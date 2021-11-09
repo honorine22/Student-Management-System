@@ -30,10 +30,7 @@ public class SchoolServiceTest {
 
     @Test
     public void createNewSchool_withElements(){
-        School school = new School();
-        school.setName("Test School Name");
-        school.setPrinciple("Test School Principle");
-        school.setAddress("Test School Address");
+        School school = new School(7,"Test School Name", "Test School Principle", "Test School Address");
         when(schoolRepositoryMock.save(ArgumentMatchers.any(School.class))).thenReturn(school);
         School schoolCreated = schoolService.addSchool(school);
         assertEquals(schoolCreated.getName(), school.getName());
@@ -51,11 +48,8 @@ public class SchoolServiceTest {
 
     @Test
     public void update_withId(){
-        School school = new School();
-        school.setId(7);
-        school.setName("Test School Name");
+        School school = new School(7,"Test School Name", "Test School Principle", "Test School Address");
         School newSchool = new School();
-        school.setName("New Test School Name");
         given(schoolRepositoryMock.findById(school.getId())).willReturn(Optional.of(school));
         schoolService.updateSchool(school.getId(), newSchool);
         verify(schoolRepositoryMock).save(newSchool);
@@ -65,7 +59,7 @@ public class SchoolServiceTest {
     @Test
     public void delete_withId(){
         School school = new School();
-        school.setName("Test School Name");;
+        school.setName("Test School Name");
         school.setId(1);
         when(schoolRepositoryMock.findById(school.getId())).thenReturn(Optional.of(school));
         schoolService.deleteSchool(school.getId());
@@ -76,7 +70,7 @@ public class SchoolServiceTest {
 //        School school = new School();
 //        school.setId(4);
 //        when(schoolRepositoryMock.findById(school.getId())).thenReturn(Optional.of(school));
-//        assertEquals(schoolService.findById(school.getId()), school);
+//        assertEquals(schoolService.getSchoolById(school.getId()), school);
 //        verify(schoolRepositoryMock).findById(school.getId());
 //
 //    }

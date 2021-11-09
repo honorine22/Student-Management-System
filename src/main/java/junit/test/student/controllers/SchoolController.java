@@ -17,6 +17,11 @@ public class SchoolController {
         return schoolService.getAllSchools();
     }
 
+    @GetMapping("/schools/{id}")
+    public School getSchoolById(@PathVariable Integer id) {
+        return (School) schoolService.getSchoolById(id);
+    }
+
     @PostMapping("/schools")
     public void addSchool(@RequestBody School school) {
         schoolService.addSchool(school);

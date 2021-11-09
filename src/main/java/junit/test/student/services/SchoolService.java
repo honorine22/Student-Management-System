@@ -3,7 +3,6 @@ package junit.test.student.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 import junit.test.student.models.School;
 import junit.test.student.repositories.SchoolRepository;
@@ -16,6 +15,7 @@ public class SchoolService {
     public List<School> getAllSchools() {
         return schoolRepository.findAll();
     }
+
     public School addSchool(School school) {
         return schoolRepository.save(school);
     }
@@ -31,7 +31,7 @@ public class SchoolService {
         return schoolRepository.save(school);
     }
 
-    public Optional<School> findById(Integer id) {
+    public Object getSchoolById(Integer id) {
         return schoolRepository.findById(id);
     }
 }
